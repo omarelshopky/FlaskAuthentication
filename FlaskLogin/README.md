@@ -1,10 +1,10 @@
-# Flask Starter Project | Flask-Login, Flask-SQLAlchemy, and FLASK-WTF
+# Flask Starter Project | Flask-Login, Flask-SQLAlchemy, FLASK-WTF, and Flask-Injector
 
 A Flask starter project with server-side setup, including:
-    Flask-Login: For user authentication management.
-    Flask-SQLAlchemy: For database ORM integration.
-    Flask-WTF: For form validation on both client and server sides, with CSRF protection.
-    Flask-Injector: For dependency injection
+- Flask-Login: For user authentication management.
+- Flask-SQLAlchemy: For database ORM integration.
+- Flask-WTF: For form validation on both client and server sides, with CSRF protection.
+- Flask-Injector: For dependency injection
 
 
 ## Establish the app
