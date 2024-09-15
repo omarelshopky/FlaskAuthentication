@@ -7,6 +7,7 @@ from flask_limiter.util import get_remote_address
 
 
 db = SQLAlchemy()
+jwt = JWTManager()
 
 def create_app():
     # Create Flask Application
@@ -17,7 +18,7 @@ def create_app():
 
     # Load Extensions
     db.init_app(app)
-    JWTManager(app)
+    jwt.init_app(app)
 
     limiter = Limiter(
         get_remote_address,
