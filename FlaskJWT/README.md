@@ -25,6 +25,7 @@ SQLALCHEMY_DATABASE_URI=sqlite:///DATABASE_FILE.db    # The database connection 
 SECRET_KEY=         # The secret key used to encrypt the session content
 JWT_SECRET_KEY=     # The secret key used for JWT signature
 JWT_ACCESS_TOKEN_EXPIRES=30
+JWT_IDENTITY_CLAIM="public_id"
 ```
 
 - Run the flask app
