@@ -1,13 +1,25 @@
-from flask import Blueprint, render_template 
-from flask_login import login_required, current_user
+from app import create_app, db, login_manager
+from flask_injector import FlaskInjector, singleton
+from app.services.products import ProductService
+from app.services.user import UserService
 
-main = Blueprint('main', __name__)
 
-@main.route('/')
-def index():
-    return render_template('index.html')
+app = create_app()
 
-@main.route('/profile')
-@login_required
-def profile():
-    return render_template('profile.html', name=current_user.name)
+# Configure and enable Dependency Injection
+def configure(binder):
+    binder.bind(ProductService, to=ProductService(db), scope=singleton)
+    binder.bind(UserService, to=UserService(db), scope=singleton)
+
+FlaskInjector(app=app, modules=[configure])
+
+@login_manager.user_loader
+def load_user(user_id):
+    return UserService(db).get_by_id(user_id)
+
+if __name__ == '__main__':
+    if app.config["CREATE_DATABASE_IF_NOT_FOUND"]:
+        with app.app_context():
+            db.create_all()
+
+    app.run()

@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %} Edit Product {% endblock %}
+
+{% block content %}
+<form action="/products/{{product.id}}" method="POST" class="form">
+    {{ form.name.label }}
+    {{ form.name(size=20, value=product.name) }}
+
+    {% if form.name.errors %}
+        <span class="error-message">{{ form.name.errors[0] }}</span>
+    {% endif %}
+
+    {{ form.price.label }}
+    {{ form.price(value=product.price) }}
+
+    {% if form.price.errors %}
+        <span class="error-message">{{ form.price.errors[0] }}</span>
+    {% endif %}
+
+    {{ form.csrf_token }}
+
+    <input type="submit" value="Edit">
+</form>
+{% endblock %}

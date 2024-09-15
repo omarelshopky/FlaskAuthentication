@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block title %} List Products {% endblock %}
+
+{% block content %}
+<h1>Products List</h1>
+<li>
+    {% for product in products %}
+        <ul><a href="/products/{{product.public_id}}">{{ product.name }} : {{ product.price }}</a></ul>
+    {% endfor %}
+</li>
+
+<a href="/products/create">Create a New Product</a>
+
+{% if msg %}
+    <p>{{ msg }}</p>
+{% endif %}
+{% endblock %}
