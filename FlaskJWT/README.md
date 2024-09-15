@@ -1,34 +1,46 @@
-# Flask JWT Authentication
-An authentication system uses flask-jwt (flask-jwt-extended) for stateless applications like APIs as flask-jwt consider the user as a client.
+# Flask Starter Project | Flask-JWT-Extended, Flask-SQLAlchemy, and Flask-Injector
 
-<br>
+A Flask starter project with client-side setup, including:
+- **Flask-JWT-Extended**: For authentication management.
+- **Flask-SQLAlchemy**: For database ORM integration.
+- **Flask-Injector**: For dependency injection
+- **Flask-Limiter**: For rate limiting
 
-# Establish the app
+
+## Establish the app
+
 - Create a virtual environment with all required dependencies by running those commands
-```sh
-pip install pipenv
-pipenv install
-```
-- Set your environment variables in **.env** file
-- Then start the flask app by
-```sh
-pipenv shell
-flask run
+
+```bash
+python -m venv venv
+./venv/Scripts/activate
+pip install -r requirements.txt
 ```
 
-# Update the Database
-- If you do any change in the database models run this code to update the schema
-```py
-from main import db, app
-db.create_all(app=app)
+- Set the environment variables based on your configuration in the `.env` file
+```env
+FLASK_DEBUG=True    # Enable hot reload and debug messages
+CREATE_DATABASE_IF_NOT_FOUND=True    # Create new database file in case of there is no a database file already
+SQLALCHEMY_DATABASE_URI=sqlite:///DATABASE_FILE.db    # The database connection string
+SECRET_KEY=         # The secret key used to encrypt the session content
+JWT_SECRET_KEY=     # The secret key used for JWT signature
+JWT_ACCESS_TOKEN_EXPIRES=30
 ```
 
-<br>
+- Run the flask app
 
-# Endpoints Usage
+```bash
+python main.py
+```
 
-## /register
-- Register a new user in the database
+
+## Endpoints Usage
+
+### Auth Route
+
+## /auth/signup
+
+- Signup a new user in the database
   
 **Request Body**
 ```json
@@ -60,17 +72,17 @@ db.create_all(app=app)
 }
 ```
 
-- Exceed Ratelimit
+- Exceed Rate limit
 ```json
 {
-    "error": "ratelimit exceeded"
+    "error": "rate limit exceeded"
 }
 ```
 
 
-## /login
+### /auth/login
 - Login with a specific user already in the database
-  
+
 **Request Body**
 ```json
 {
@@ -94,17 +106,17 @@ db.create_all(app=app)
 }
 ```
 
-- Exceed Ratelimit
+- Exceed Rate limit
 ```json
 {
-    "error": "ratelimit exceeded"
+    "error": "rate limit exceeded"
 }
 ```
 
 
-## /protected
-- Just a test for an endpoint need users authentication to access 
-  
+## /user/profile
+- Just a test for an endpoint need users authentication to access
+
 **Request Header**
 ```json
 headers = {
@@ -118,9 +130,9 @@ headers = {
 Hello to the protected area, your public id is <YOUR_ID>
 ```
 
-- Exceed Ratelimit
+- Exceed Rate limit
 ```json
 {
-    "error": "ratelimit exceeded"
+    "error": "rate limit exceeded"
 }
 ```
