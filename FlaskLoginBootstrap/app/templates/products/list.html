@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block page_title %} List Products {% endblock %}
+
+{% block container %}
+    <div class="d-flex flex-row justify-content-between">
+        <h1>Products List</h1>
+        <a class="btn btn-secondary mt-auto mb-auto" href="{{ url_for("products.create") }}">
+            Create New Product
+        </a>
+    </div>
+
+    {% if products %}
+        <table class="table table-hover table-light mt-5">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Public ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in products %}
+                    <tr>
+                        <th scope="row">{{ loop.index }}</th>
+                        <td>{{ product.public_id }}</td>
+                        <td>{{ product.name }}</td>
+                        <td>{{ product.price }}</td>
+                        <td>
+                            <a href="{{ url_for("products.view", public_id=product.public_id) }}">View</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <span>
+            No products available. :(
+        </span>
+    {% endif %}
+
+
+{% endblock %}

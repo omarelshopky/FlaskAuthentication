@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block page_title %} View Product {% endblock %}
+
+{% block container %}
+    <div class="d-flex flex-row justify-content-between mb-5">
+        <h1>Product</h1>
+        <div class="d-flex flex-row gap-3 text-light">
+            <a class="btn btn-secondary ml-3 mt-auto mb-auto" href="{{ url_for("products.edit", public_id=product.public_id) }}">
+                Edit
+            </a>
+            <a class="btn btn-danger ml-3 mt-auto mb-auto" onclick="deleteProduct()">
+                Delete
+            </a>
+        </div>
+    </div>
+    <div>
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" value="{{ product.name }}" disabled>
+        </div>
+        <div class="mb-3">
+            <label for="price" class="form-label">Price</label>
+            <input type="text" class="form-control" id="price" value="{{ product.price }}" disabled>
+        </div>
+    </div>
+
+    <script>
+        const deleteProduct = () => {
+            fetch("{{ url_for('products.delete', public_id=product.public_id) }}",  {
+                method: 'DELETE'
+            }).then(response => {
+                if (response.ok) {
+                    window.location.href = "{{ url_for('products.list_all') }}";
+                }
+            }).catch(error => {
+                // console.error('Network error:', error);
+            });
+        }
+    </script>
+{% endblock %}

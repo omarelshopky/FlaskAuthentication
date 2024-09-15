@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block page_title %} Edit Product {% endblock %}
+
+{% block container %}
+    <form action="{{ url_for('products.update', public_id=product.public_id) }}" method="POST" class="form" role="form">
+        {{ form.hidden_tag() }}
+
+        {{ wtf.form_field(form.name) }}
+        {{ wtf.form_field(form.price) }}
+
+        {{ wtf.form_errors(form, hiddens="only") }}
+
+        <button type="submit" class="btn btn-secondary">Edit</button>
+    </form>
+{% endblock %}
