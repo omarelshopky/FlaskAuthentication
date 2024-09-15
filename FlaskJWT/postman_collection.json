@@ -1,0 +1,240 @@
+{
+	"info": {
+		"_postman_id": "5b05e33e-aa4d-4dec-94fe-db9b4f090147",
+		"name": "Flask Starter Project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Create Product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"chocolate\",\r\n    \"price\": 50\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/products/create",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"products",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Products",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/products",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Product",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/products/3ed72f25-810f-4fe2-bbb6-f223bd1dd2b0",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"products",
+								"3ed72f25-810f-4fe2-bbb6-f223bd1dd2b0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"flower\",\r\n    \"price\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/products/938ed826-d054-4dda-93fc-64b49fde2ce3/edit",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"products",
+								"938ed826-d054-4dda-93fc-64b49fde2ce3",
+								"edit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View Product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/products/938ed826-d054-4dda-93fc-64b49fde2ce3",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"products",
+								"938ed826-d054-4dda-93fc-64b49fde2ce3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Profile",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/user/profile",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"user",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"omarelshopky\",\r\n    \"password\": \"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/auth/login",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"omarelshopky\",\r\n    \"password\": \"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/auth/login",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcyNjQyOTMxNSwianRpIjoiZTBiNjhiMzktNWJiZC00YWQ1LWFlYWEtN2UwYmMyYWQ2NjAxIiwidHlwZSI6ImFjY2VzcyIsInB1YmxpY19pZCI6IjhkNTc3NGU4LTEwMzEtNGFkYy1iMTg0LTYyNDI5M2RmMWI1MSIsIm5iZiI6MTcyNjQyOTMxNSwiY3NyZiI6IjYxZDY3YWFjLTBmOGYtNGIxYS1iY2Q4LWU5NTNiOWU0ZGZjOCIsImV4cCI6MTcyNjQzMTExNX0.c81-8ev9imi16w4GAXTJZyIk2opbS7kL5t8uOFNq3pM",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BASE_URL",
+			"value": "http://127.0.0.1:5000"
+		}
+	]
+}
