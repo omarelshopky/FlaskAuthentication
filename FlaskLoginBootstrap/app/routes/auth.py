@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, redirect, url_for
 from flask_injector import inject
 from app.services.user import UserService
+from app.decorators.logout_required import logout_required
 from flask_login import login_required
 from app.forms.auth.login_form import LoginForm
 from app.forms.auth.signup_form import SignupForm
@@ -8,6 +9,7 @@ from app.forms.auth.signup_form import SignupForm
 auth = Blueprint("auth", __name__)
 
 @auth.route("/login", methods=["GET", "POST"])
+@logout_required
 @inject
 def login(user_service: UserService):
     login_form = LoginForm()
@@ -23,6 +25,7 @@ def login(user_service: UserService):
     return render_template("/auth/login.html", form=login_form, error_message=error_message)
 
 @auth.route("/signup", methods=["GET", "POST"])
+@logout_required
 @inject
 def signup(user_service: UserService):
     signup_form = SignupForm()

@@ -1,12 +1,20 @@
 from flask import Flask, url_for
 from config import Config
-from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_bootstrap import Bootstrap
+from app.core.sqlalchemy_base_model import SQLAlchemyBaseModel
+from app.core.mongo_base_model import MongoBaseModel
 
 
-db = SQLAlchemy()
 login_manager = LoginManager()
+
+
+if Config.DATABASE_TYPE == "sqlalchemy":
+    model_base_class = SQLAlchemyBaseModel
+elif Config.DATABASE_TYPE == "mongodb":
+    model_base_class = MongoBaseModel
+else:
+    raise ValueError("A database type should be either \"sqlalchemy\" or \"mongodb\"")
 
 def create_app():
     # Create Flask Application
@@ -16,7 +24,8 @@ def create_app():
     app.config.from_object(Config)
 
     # Load Extensions
-    db.init_app(app)
+    if app.config["DATABASE_TYPE"] == "sqlalchemy":
+        SQLAlchemyBaseModel.db.init_app(app)
     Bootstrap(app)
 
     login_manager.init_app(app)
